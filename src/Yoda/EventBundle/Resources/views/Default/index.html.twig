@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Some Twiggy Goodness{% endblock %}
+
+{% block body %}
+    {% for i in 1..count %}
+        {% if i is odd %}
+            Hello <strong>{{ name|upper }}</strong> # {{ i }}!<br/>
+        {% endif %}
+    {% endfor %}
+
+    {{ event.name }}<br/>
+    {{ event.location }}<br/>
+{% endblock %}

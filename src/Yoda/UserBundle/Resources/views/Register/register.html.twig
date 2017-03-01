@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/user/css/login.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <section class="login main-block">
+        <article>
+            <section>
+                <h1>Register</h1>
+                <form action="{{ path('user_register') }}" method="POST" {#novalidate="novalidate"#}>
+                    {{ form_errors(form) }}
+
+                    {{ form_row(form.username, {
+                        'attr': { 'class': 'the-username-field' },
+                        'help': 'Choose something unique and clever'
+                    }) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword.first) }}
+                    {{ form_row(form.plainPassword.second) }}
+
+                    {{ form_rest(form) }}
+                    <br>
+                    <input type="submit" class="btn btn-primary pull-right" value="Register" />
+                </form>
+            </section>
+        </article>
+    </section>
+{% endblock %}

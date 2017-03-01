@@ -1,0 +1,11 @@
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user_routes:
+    resource: "@UserBundle/Controller"
+    type: annotation
+
+report:
+    resource: "@EventBundle/Controller"
+    type:     annotation

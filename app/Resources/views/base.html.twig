@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        {%- if block("title") is defined -%}
+            {{ block("title") }} | Starwars Events
+        {%- else -%}
+            Events from a Galaxy, far far away
+        {%- endif -%}
+    </title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+
+        {% stylesheets
+            'bundles/event/css/event.css'
+            'bundles/event/css/events.css'
+            'bundles/event/css/main.css'
+            'bundles/event/css/starfield.css'
+            filter='cssrewrite'
+            filter='?uglifycss'
+            output='css/built/layout.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    {#<canvas id="starfield" width="1300" height="810"></canvas>#}
+    <div class="container">
+
+       {# {% image output="images/yoda.png" '@EventBundle/Resources/public/images/yoda.png' %}
+            <img src="{{ asset_url }}" />
+        {% endimage %}#}
+
+        <div>
+            {% for flash_message in app.session.flashBag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% block body %}{% endblock %}
+    </div><!-- /.container -->
+
+    {#{% block javascripts %}
+        {% javascripts '@EventBundle/Resources/public/js/*' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    {% endblock %}#}
+    {% block javascripts %}
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    {% endblock %}
+</body>
+</html>
